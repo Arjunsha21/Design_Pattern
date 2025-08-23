@@ -1,0 +1,102 @@
+# Template Method Design Pattern in TypeScript
+
+This project demonstrates the Template Method Design Pattern using a real-world example: generating different types of student progress reports (practice, challenge, revision) with a standardized workflow.
+
+---
+
+## What is the Template Method Design Pattern?
+
+The Template Method Pattern is a behavioral design pattern that defines the skeleton of an algorithm in a base class, allowing subclasses to override specific steps without changing the overall workflow. It promotes code reuse and enforces a standard process.
+
+In Mindspark, a progress report for a student may vary depending on the learning mode:
+Practice Mode Report → focus on accuracy, attempts, and hints used
+Challenge Mode Report → focus on speed, rank, and difficulty level
+Revision Mode Report → focus on improvement over time
+But the overall report generation process is the same:
+Fetch student data
+Generate specific metrics (differs per mode)
+Format report
+Send report to student/teacher
+
+Useful : 
+Common structure (fetch → metrics → format → send) is enforced across all report types.
+Each report type focuses only on its unique metrics without re-writing the boilerplate (fetch/format/send).
+Easy to add new report types (say "Adaptive Learning Report") just by extending the base class.
+Ensures consistency in reporting → all reports look uniform, just the metrics change.
+
+**This is useful when:**
+- You want to define the outline of an algorithm, but allow subclasses to customize certain steps.
+- You want to avoid code duplication for processes that share a common structure.
+- You want to ensure consistency in workflows across different implementations.
+
+---
+
+## 🗂️ Project Structure
+
+```
+behavioural/
+└── template_pattern/
+    ├── Template.ts      # Template method implementation for progress reports
+```
+
+---
+
+## 📦 Description of Classes
+
+| Class/Interface      | Role                                                      |
+|----------------------|-----------------------------------------------------------|
+| `ProgressReport`     | Abstract class defining the template method and workflow  |
+| `PracticeReport`     | Concrete report for practice sessions                     |
+| `ChallengeReport`    | Concrete report for challenge performance                 |
+| `RevisionReport`     | Concrete report for revision history                      |
+
+---
+
+## 💡 How It Works
+
+- `ProgressReport` defines the `generateReport` template method, which outlines the steps for generating a report.
+- Subclasses (`PracticeReport`, `ChallengeReport`, `RevisionReport`) implement specific steps (`fetchData`, `generateMetrics`) for their report type.
+- Shared steps (`formatReport`, `sendReport`) are implemented in the base class.
+- The client creates the desired report type and calls `generateReport`, ensuring a consistent workflow.
+
+---
+
+## ✅ Sample Output
+
+```
+📥 Fetching practice session data for Student STU101
+📊 Calculating accuracy, attempts, and hints used...
+📑 Formatting report in Mindspark standard template...
+📤 Sending report to Student ID: STU101
+⚡ Fetching challenge performance for Student STU102
+🏆 Calculating speed, rank, and difficulty level...
+📑 Formatting report in Mindspark standard template...
+📤 Sending report to Student ID: STU102
+🔄 Fetching revision history for Student STU103
+📈 Calculating improvement over time...
+📑 Formatting report in Mindspark standard template...
+📤 Sending report to Student ID: STU103
+```
+
+---
+
+## ▶️ How to Compile and Run
+
+```sh
+tsc Template.ts
+node Template.js
+```
+
+---
+
+## Benefits Demonstrated
+
+- Enforces a standard workflow for different report types
+- Promotes code reuse and reduces duplication
+- Allows easy customization of specific steps
+
+---
+
+## Summary
+
+The Template Method Pattern is ideal for defining standardized processes with customizable steps, ensuring consistency and maintainability across different
