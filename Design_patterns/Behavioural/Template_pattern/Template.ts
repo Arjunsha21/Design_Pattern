@@ -12,42 +12,42 @@ abstract class ProgressReport {
   protected abstract generateMetrics(): void;
 
   protected formatReport(): void {
-    console.log("📑 Formatting report in Mindspark standard template...");
+    console.log(" Formatting report in Mindspark standard template...");
   }
 
   protected sendReport(studentId: string): void {
-    console.log(`📤 Sending report to Student ID: ${studentId}`);
+    console.log(` Sending report to Student ID: ${studentId}`);
   }
 }
 
 // 2. Concrete Implementations
 class PracticeReport extends ProgressReport {
   protected fetchData(studentId: string): void {
-    console.log(`📥 Fetching practice session data for Student ${studentId}`);
+    console.log(` Fetching practice session data for Student ${studentId}`);
   }
 
   protected generateMetrics(): void {
-    console.log("📊 Calculating accuracy, attempts, and hints used...");
+    console.log(" Calculating accuracy, attempts, and hints used...");
   }
 }
 
 class ChallengeReport extends ProgressReport {
   protected fetchData(studentId: string): void {
-    console.log(`⚡ Fetching challenge performance for Student ${studentId}`);
+    console.log(` Fetching challenge performance for Student ${studentId}`);
   }
 
   protected generateMetrics(): void {
-    console.log("🏆 Calculating speed, rank, and difficulty level...");
+    console.log(" Calculating speed, rank, and difficulty level...");
   }
 }
 
 class RevisionReport extends ProgressReport {
   protected fetchData(studentId: string): void {
-    console.log(`🔄 Fetching revision history for Student ${studentId}`);
+    console.log(` Fetching revision history for Student ${studentId}`);
   }
 
   protected generateMetrics(): void {
-    console.log("📈 Calculating improvement over time...");
+    console.log(" Calculating improvement over time...");
   }
 }
 
@@ -64,28 +64,28 @@ revision.generateReport("STU103");
 // Without Template Pattern 
 // class PracticeReport {
 //   generateReport(studentId: string): void {
-//     console.log(`📥 Fetching practice session data for Student ${studentId}`);
-//     console.log("📊 Calculating accuracy, attempts, and hints used...");
-//     console.log("📑 Formatting report in Mindspark standard template...");
-//     console.log(`📤 Sending report to Student ID: ${studentId}`);
+//     console.log(` Fetching practice session data for Student ${studentId}`);
+//     console.log(" Calculating accuracy, attempts, and hints used...");
+//     console.log(" Formatting report in Mindspark standard template...");
+//     console.log(` Sending report to Student ID: ${studentId}`);
 //   }
 // }
 
 // class ChallengeReport {
 //   generateReport(studentId: string): void {
-//     console.log(`⚡ Fetching challenge performance for Student ${studentId}`);
-//     console.log("🏆 Calculating speed, rank, and difficulty level...");
-//     console.log("📑 Formatting report in Mindspark standard template...");
-//     console.log(`📤 Sending report to Student ID: ${studentId}`);
+//     console.log(` Fetching challenge performance for Student ${studentId}`);
+//     console.log(" Calculating speed, rank, and difficulty level...");
+//     console.log(" Formatting report in Mindspark standard template...");
+//     console.log(` Sending report to Student ID: ${studentId}`);
 //   }
 // }
 
 // class RevisionReport {
 //   generateReport(studentId: string): void {
-//     console.log(`🔄 Fetching revision history for Student ${studentId}`);
-//     console.log("📈 Calculating improvement over time...");
-//     console.log("📑 Formatting report in Mindspark standard template...");
-//     console.log(`📤 Sending report to Student ID: ${studentId}`);
+//     console.log(` Fetching revision history for Student ${studentId}`);
+//     console.log(" Calculating improvement over time...");
+//     console.log(" Formatting report in Mindspark standard template...");
+//     console.log(` Sending report to Student ID: ${studentId}`);
 //   }
 // }
 

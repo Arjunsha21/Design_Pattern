@@ -7,24 +7,24 @@ interface EvaluationStrategy {
 class TextEvaluationStrategy implements EvaluationStrategy {
   evaluate(submission: any): string {
     return submission.answer.includes("correct")
-      ? "Text Answer is Correct ✅"
-      : "Text Answer is Incorrect ❌";
+      ? "Text Answer is Correct "
+      : "Text Answer is Incorrect ";
   }
 }
 
 class ImageEvaluationStrategy implements EvaluationStrategy {
   evaluate(submission: any): string {
     return submission.hasClearImage
-      ? "Image Answer Accepted 📷"
-      : "Image is blurry ❌, please re-upload";
+      ? "Image Answer Accepted "
+      : "Image is blurry , please re-upload";
   }
 }
 
 class MCQEvaluationStrategy implements EvaluationStrategy {
   evaluate(submission: any): string {
     return submission.selectedOption === submission.correctOption
-      ? "MCQ Answer is Correct ✅"
-      : "MCQ Answer is Incorrect ❌";
+      ? "MCQ Answer is Correct "
+      : "MCQ Answer is Incorrect ";
   }
 }
 
@@ -52,36 +52,36 @@ const mcqSubmission = { selectedOption: "B", correctOption: "C" };
 
 const evaluator = new HomeworkEvaluator(new TextEvaluationStrategy());
 console.log(evaluator.evaluateSubmission(textSubmission)); 
-// ✅ Text Answer is Correct
+//  Text Answer is Correct
 
 evaluator.setStrategy(new ImageEvaluationStrategy());
 console.log(evaluator.evaluateSubmission(imageSubmission)); 
-// ❌ Image is blurry
+//  Image is blurry
 
 evaluator.setStrategy(new MCQEvaluationStrategy());
 console.log(evaluator.evaluateSubmission(mcqSubmission)); 
-// ❌ MCQ Answer is Incorrect
+//  MCQ Answer is Incorrect
 
 // // HomeworkEvaluator WITHOUT Strategy Pattern
 // class HomeworkEvaluator {
 //   evaluateSubmission(submission: any, type: string): string {
 //     if (type === "text") {
 //       return submission.answer.includes("correct")
-//         ? "Text Answer is Correct ✅"
-//         : "Text Answer is Incorrect ❌";
+//         ? "Text Answer is Correct "
+//         : "Text Answer is Incorrect ";
 //     } 
 //     else if (type === "image") {
 //       return submission.hasClearImage
-//         ? "Image Answer Accepted 📷"
-//         : "Image is blurry ❌, please re-upload";
+//         ? "Image Answer Accepted "
+//         : "Image is blurry , please re-upload";
 //     } 
 //     else if (type === "mcq") {
 //       return submission.selectedOption === submission.correctOption
-//         ? "MCQ Answer is Correct ✅"
-//         : "MCQ Answer is Incorrect ❌";
+//         ? "MCQ Answer is Correct "
+//         : "MCQ Answer is Incorrect ";
 //     } 
 //     else {
-//       return "Unknown submission type ⚠️";
+//       return "Unknown submission type ";
 //     }
 //   }
 // }
@@ -94,10 +94,10 @@ console.log(evaluator.evaluateSubmission(mcqSubmission));
 // const evaluator = new HomeworkEvaluator();
 
 // console.log(evaluator.evaluateSubmission(textSubmission, "text"));
-// // ✅ Text Answer is Correct
+// // Text Answer is Correct
 
 // console.log(evaluator.evaluateSubmission(imageSubmission, "image"));
-// // ❌ Image is blurry
+// //  Image is blurry
 
 // console.log(evaluator.evaluateSubmission(mcqSubmission, "mcq"));
-// // ❌ MCQ Answer is Incorrect
+// //  MCQ Answer is Incorrect

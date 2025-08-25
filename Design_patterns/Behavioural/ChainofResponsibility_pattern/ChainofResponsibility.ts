@@ -14,9 +14,9 @@ abstract class HomeworkHandler {
 class SpellCheckHandler extends HomeworkHandler {
   handle(submission: string): void {
     if (submission.includes("mispell")) {
-      console.log("❌ SpellCheck failed");
+      console.log("SpellCheck failed");
     } else {
-      console.log("✅ SpellCheck passed");
+      console.log("SpellCheck passed");
       this.nextHandler?.handle(submission);
     }
   }
@@ -25,9 +25,9 @@ class SpellCheckHandler extends HomeworkHandler {
 class PlagiarismCheckHandler extends HomeworkHandler {
   handle(submission: string): void {
     if (submission.includes("copied")) {
-      console.log("❌ Plagiarism detected");
+      console.log("Plagiarism detected");
     } else {
-      console.log("✅ Plagiarism check passed");
+      console.log("Plagiarism check passed");
       this.nextHandler?.handle(submission);
     }
   }
@@ -36,9 +36,9 @@ class PlagiarismCheckHandler extends HomeworkHandler {
 class ContentValidationHandler extends HomeworkHandler {
   handle(submission: string): void {
     if (!submission.includes("photosynthesis")) {
-      console.log("❌ Content validation failed");
+      console.log("Content validation failed");
     } else {
-      console.log("✅ Content validation passed");
+      console.log("Content validation passed");
     }
   }
 }
@@ -58,7 +58,7 @@ const submissions = [
   "mispell in text",
 ];
 
-console.log("🔎 Validating submissions:");
+console.log("Validating submissions:");
 submissions.forEach((submission, index) => {
   console.log(`\nSubmission ${index + 1}: "${submission}"`);
   spellCheck.handle(submission);
@@ -69,25 +69,25 @@ submissions.forEach((submission, index) => {
 // function validateHomework(submission: string): void {
 //   // Spell Check
 //   if (submission.includes("mispell")) {
-//     console.log("❌ SpellCheck failed");
+//     console.log("SpellCheck failed");
 //     return; // stop further validation
 //   } else {
-//     console.log("✅ SpellCheck passed");
+//     console.log("SpellCheck passed");
 //   }
 
 //   // Plagiarism Check
 //   if (submission.includes("copied")) {
-//     console.log("❌ Plagiarism detected");
+//     console.log("Plagiarism detected");
 //     return;
 //   } else {
-//     console.log("✅ Plagiarism check passed");
+//     console.log("Plagiarism check passed");
 //   }
 
 //   // Content Validation
 //   if (!submission.includes("photosynthesis")) {
-//     console.log("❌ Content validation failed");
+//     console.log("Content validation failed");
 //   } else {
-//     console.log("✅ Content validation passed");
+//     console.log("Content validation passed");
 //   }
 // }
 
@@ -98,7 +98,7 @@ submissions.forEach((submission, index) => {
 //   "mispell in text",
 // ];
 
-// console.log("🔎 Validating submissions:");
+// console.log("Validating submissions:");
 // submissions.forEach((submission, index) => {
 //   console.log(`\nSubmission ${index + 1}: "${submission}"`);
 //   validateHomework(submission);

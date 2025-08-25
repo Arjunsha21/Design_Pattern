@@ -73,11 +73,11 @@ const cmd1 = new SelectOptionCommand(receiver, "B");
 const cmd2 = new HighlightTextCommand(receiver, "Photosynthesis");
 const cmd3 = new SubmitAnswerCommand(receiver, "Oxygen is released");
 
-invoker.executeCommand(cmd1); // ✅ Selected option: B
-invoker.executeCommand(cmd2); // ✅ Highlighted text: "Photosynthesis"
-invoker.executeCommand(cmd3); // ✅ Submitted answer: Oxygen is released
+invoker.executeCommand(cmd1); // Selected option: B
+invoker.executeCommand(cmd2); // Highlighted text: "Photosynthesis"
+invoker.executeCommand(cmd3); // Submitted answer: Oxygen is released
 
-console.log("\n⏪ Undo last action:");
+console.log("\n Undo last action:");
 invoker.undoLast(); // Undo submit answer
 invoker.undoLast(); // Undo highlight
 
@@ -101,9 +101,9 @@ invoker.undoLast(); // Undo highlight
 // const actions = new StudentActions();
 
 // // Execute actions directly
-// actions.selectOption("B");              // ✅ Selected option: B
-// actions.highlightText("Photosynthesis"); // ✅ Highlighted text: "Photosynthesis"
-// actions.submitAnswer("Oxygen is released"); // ✅ Submitted answer: Oxygen is released
+// actions.selectOption("B");              // Selected option: B
+// actions.highlightText("Photosynthesis"); // Highlighted text: "Photosynthesis"
+// actions.submitAnswer("Oxygen is released"); // Submitted answer: Oxygen is released
 
 // // Undo functionality is hard to implement without Command
-// console.log("\n⏪ Undo is not supported in this approach");
+// console.log("\n Undo is not supported in this approach");

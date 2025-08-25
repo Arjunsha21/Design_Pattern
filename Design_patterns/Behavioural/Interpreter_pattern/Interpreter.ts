@@ -44,7 +44,7 @@ const q2Rule = new AndExpression(
   new KeywordExpression("evaporation")
 );
 
-console.log("🔎 Evaluating student answers:");
+console.log("Evaluating student answers:");
 studentAnswers.forEach((answer, index) => {
   const q1Result = q1Rule.interpret(answer);
   const q2Result = q2Rule.interpret(answer);

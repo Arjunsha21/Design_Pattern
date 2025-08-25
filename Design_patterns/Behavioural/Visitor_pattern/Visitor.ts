@@ -71,8 +71,8 @@ const questions: Question[] = [
 const evaluator = new EvaluationVisitor();
 const hintGen = new HintVisitor();
 
-console.log("🔎 Evaluating Questions...");
+console.log(" Evaluating Questions...");
 questions.forEach(q => q.accept(evaluator));
 
-console.log("\n💡 Generating Hints...");
+console.log("\n Generating Hints...");
 questions.forEach(q => q.accept(hintGen));

@@ -43,13 +43,13 @@ class ChatMediator implements Mediator {
 // Concrete Participants
 class Teacher extends Participant {
   receiveMessage(message: string): void {
-    console.log(`👩‍🏫 Teacher ${this.name} received: ${message}`);
+    console.log(`Teacher ${this.name} received: ${message}`);
   }
 }
 
 class Student extends Participant {
   receiveMessage(message: string): void {
-    console.log(`👨‍🎓 Student ${this.name} received: ${message}`);
+    console.log(`Student ${this.name} received: ${message}`);
   }
 }
 

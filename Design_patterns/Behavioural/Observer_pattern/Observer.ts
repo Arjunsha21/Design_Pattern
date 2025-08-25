@@ -12,7 +12,7 @@ class Student implements Observer {
   }
 
   update(message: string): void {
-    console.log(`📩 ${this.name} received notification: ${message}`);
+    console.log(`${this.name} received notification: ${message}`);
   }
 }
 
@@ -43,7 +43,7 @@ class Teacher implements Subject {
 
   // Teacher posts announcement
   postAnnouncement(announcement: string) {
-    console.log(`👩‍🏫 Teacher posted: "${announcement}"`);
+    console.log(`Teacher posted: "${announcement}"`);
     this.notifyObservers(announcement);
   }
 }
@@ -62,18 +62,18 @@ teacher.addObserver(student2);
 teacher.addObserver(student3);
 
 teacher.postAnnouncement("New homework on Fractions is available!");
-// 👩‍🏫 Teacher posted: "New homework on Fractions is available!"
-// 📩 Arjun received notification: New homework on Fractions is available!
-// 📩 Ajay received notification: New homework on Fractions is available!
-// 📩 Harish received notification: New homework on Fractions is available!
+// Teacher posted: "New homework on Fractions is available!"
+// Arjun received notification: New homework on Fractions is available!
+// Ajay received notification: New homework on Fractions is available!
+// Harish received notification: New homework on Fractions is available!
 
 // One student unsubscribes
 teacher.removeObserver(student2);
 
 teacher.postAnnouncement("Submit your homework before Friday!");
-// 👩‍🏫 Teacher posted: "Submit your homework before Friday!"
-// 📩 Arjun received notification: Submit your homework before Friday!
-// 📩 Harish received notification: Submit your homework before Friday!
+// Teacher posted: "Submit your homework before Friday!"
+// Arjun received notification: Submit your homework before Friday!
+// Harish received notification: Submit your homework before Friday!
 
 //Without Observer Pattern
 // class Student {
@@ -84,7 +84,7 @@ teacher.postAnnouncement("Submit your homework before Friday!");
 //   }
 
 //   receiveNotification(message: string): void {
-//     console.log(`📩 ${this.name} received notification: ${message}`);
+//     console.log(`${this.name} received notification: ${message}`);
 //   }
 // }
 
@@ -100,7 +100,7 @@ teacher.postAnnouncement("Submit your homework before Friday!");
 //   }
 
 //   postAnnouncement(announcement: string) {
-//     console.log(`👩‍🏫 Teacher posted: "${announcement}"`);
+//     console.log(`Teacher posted: "${announcement}"`);
 
 //     // Teacher must call each student explicitly
 //     this.student1.receiveNotification(announcement);
@@ -118,7 +118,7 @@ teacher.postAnnouncement("Submit your homework before Friday!");
 // const teacher = new Teacher(student1, student2, student3);
 
 // teacher.postAnnouncement("New homework on Fractions is available!");
-// // 👩‍🏫 Teacher posted: "New homework on Fractions is available!"
-// // 📩 Arjun received notification: New homework on Fractions is available!
-// // 📩 Ajay received notification: New homework on Fractions is available!
-// // 📩 Harish received notification: New homework on Fractions is available!
+// // Teacher posted: "New homework on Fractions is available!"
+// //  Arjun received notification: New homework on Fractions is available!
+// //  Ajay received notification: New homework on Fractions is available!
+// //  Harish received notification: New homework on Fractions is available!
