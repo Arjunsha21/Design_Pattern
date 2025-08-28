@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "target": "ES2020",
+      "lib": ["es2020"],
+      "rootDir": "Proxy-pattern",
+      "outDir": "dist"
+    },
+    "include": ["proxy-pattern"]
+  }

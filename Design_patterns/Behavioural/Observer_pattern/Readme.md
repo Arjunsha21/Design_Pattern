@@ -25,8 +25,13 @@ Easy to extend: we can add ParentObserver, AdminObserver, etc. without touching 
 
 ```
 behavioural/
-└── observer_pattern/
-    ├── Observer.ts      # Observer pattern implementation for notifications
+observer/
+│── IObserver.ts
+│── ISubject.ts
+│── Student.ts
+│── Teacher.ts
+│── main.ts   (usage)
+
 ```
 
 ---
@@ -54,14 +59,13 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-👩‍🏫 Teacher posted: "New homework on Fractions is available!"
-📩 Arjun received notification: New homework on Fractions is available!
-📩 Ajay received notification: New homework on Fractions is available!
-📩 Harish received notification: New homework on Fractions is available!
-
-👩‍🏫 Teacher posted: "Submit your homework before Friday!"
-📩 Arjun received notification: Submit your homework before Friday!
-📩 Harish received notification: Submit your homework before Friday!
+Teacher posted: "New homework on Fractions is available!"
+Arjun received notification: New homework on Fractions is available!
+Ajay received notification: New homework on Fractions is available!
+Harish received notification: New homework on Fractions is available!
+Teacher posted: "Submit your homework before Friday!"
+Arjun received notification: Submit your homework before Friday!
+Harish received notification: Submit your homework before Friday!
 ```
 
 ---

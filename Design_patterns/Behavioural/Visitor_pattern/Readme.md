@@ -25,8 +25,21 @@ In Mindspark, this means we can extend functionality (evaluation, hints, difficu
 
 ```
 behavioural/
-└── visitor_pattern/
-    ├── Visitor.ts      # Visitor pattern implementation for questions
+VisitorPattern/
+│
+├── interfaces/
+│   ├── Question.ts
+│   ├── QuestionVisitor.ts
+│
+├── classes/
+│   ├── MCQQuestion.ts
+│   ├── FillInBlankQuestion.ts
+│   ├── TrueFalseQuestion.ts
+│   ├── EvaluationVisitor.ts
+│   ├── HintVisitor.ts
+│
+├── main.ts
+
 ```
 
 ---

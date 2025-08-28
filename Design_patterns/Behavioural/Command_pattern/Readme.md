@@ -30,7 +30,18 @@ Mindspark context – Perfect for recording student interactions, replaying acti
 ```
 behavioural/
 └── command_pattern/
-    ├── Command.ts      # Command pattern implementation for homework actions
+ ├── interfaces/
+ │    └── Command.ts
+ ├── receiver/
+ │    └── StudentActionReceiver.ts
+ ├── commands/
+ │    ├── SelectOptionCommand.ts
+ │    ├── SubmitAnswerCommand.ts
+ │    └── HighlightTextCommand.ts
+ ├── invoker/
+ │    └── ActionInvoker.ts
+ └── main.ts
+
 ```
 
 ---
@@ -60,12 +71,14 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-Homework submitted!
-Answer updated!
-Submission deleted!
-Undo: Submission restored!
-Undo: Answer reverted!
-Undo: Homework submission cancelled!
+Selected option: B
+Highlighted text: "Photosynthesis"
+Submitted answer: Oxygen is released
+Error executing SubmitAnswerCommand: Answer cannot be empty.
+
+Undo last actions:
+Undo submit answer:
+Undo submit answer: Oxygen is released
 ```
 
 ---

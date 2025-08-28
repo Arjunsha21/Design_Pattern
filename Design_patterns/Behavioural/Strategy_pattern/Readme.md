@@ -19,8 +19,14 @@ The Strategy Pattern is a behavioral design pattern that enables selecting an al
 
 ```
 behavioural/
-└── strategy_pattern/
-    ├── Strategy.ts      # Strategy pattern implementation for homework evaluation
+StrategyPattern/
+│── EvaluationStrategy.ts     (Strategy Interface)
+│── TextEvaluationStrategy.ts (Concrete Strategy 1)
+│── ImageEvaluationStrategy.ts (Concrete Strategy 2)
+│── MCQEvaluationStrategy.ts   (Concrete Strategy 3)
+│── HomeworkEvaluator.ts       (Context)
+│── main.ts                   (Usage / Client)
+
 ```
 
 ---
@@ -49,9 +55,9 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-Text Answer is Correct ✅
-Image is blurry ❌, please re-upload
-MCQ Answer is Incorrect ❌
+Text Answer is Correct
+Image is blurry, please re-upload
+MCQ Answer is Incorrect
 ```
 
 ---

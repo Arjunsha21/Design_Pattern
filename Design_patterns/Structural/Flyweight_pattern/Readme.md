@@ -18,9 +18,11 @@ The Flyweight Pattern is a structural design pattern that enables efficient memo
 ## 🗂️ Project Structure
 
 ```
-behavioral/
-└── flyweight_pattern/
-    ├── Flyweight.ts      # Flyweight pattern implementation for styled characters
+flyweight-pattern/
+│── CharacterStyle.ts      # Interface + Class for styles
+│── StyleFactory.ts        # Flyweight Factory
+│── StyledCharacter.ts     # Character with extrinsic state
+│── main.ts                # Client usage
 ```
 
 ---

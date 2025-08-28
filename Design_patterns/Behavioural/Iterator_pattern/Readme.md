@@ -19,8 +19,15 @@ The Iterator Pattern is a behavioral design pattern that provides a way to acces
 
 ```
 behavioural/
-└── iterator_pattern/
-    ├── Iterator.ts      # Iterator pattern implementation for questions
+IteratorPattern/
+│── interfaces/
+│   └── QuestionIterator.ts
+│── iterators/
+│   ├── ArrayQuestionIterator.ts
+│   ├── APIQuestionIterator.ts
+│   └── IncorrectAnswerIterator.ts
+│── client.ts
+│── main.ts
 ```
 
 ---
@@ -49,6 +56,7 @@ behavioural/
 ## ✅ Sample Output
 
 ```
+
 --- Math Questions ---
 Question: 2+2=?
 Question: Square root of 16?

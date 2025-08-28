@@ -32,8 +32,14 @@ It doesn’t care how each state behaves.
 
 ```
 behavioural/
-└── state_pattern/
-    ├── State.ts      # State pattern implementation for homework submission
+/StatePattern
+  ├── HomeworkState.ts   (Interface)
+  ├── DraftState.ts      (Concrete State)
+  ├── SubmittedState.ts  (Concrete State)
+  ├── ReviewedState.ts   (Concrete State)
+  ├── Homework.ts        (Context)
+  └── main.ts           (Usage / Demo)
+
 ```
 
 ---
@@ -62,11 +68,11 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-❌ Homework is still in Draft. Cannot review.
-✅ Homework submitted for review.
-❌ Homework already submitted. Cannot submit again.
-👩‍🏫 Teacher reviewed the homework.
-❌ Homework already reviewed.
+Homework is still in Draft. Cannot review.
+Homework submitted for review.
+Homework already submitted. Cannot submit again.
+Teacher reviewed the homework.
+Homework already reviewed.
 ```
 
 ---

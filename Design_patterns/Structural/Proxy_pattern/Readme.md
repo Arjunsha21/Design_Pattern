@@ -19,9 +19,16 @@ The Proxy Design Pattern is a structural design pattern that provides a surrogat
 ## 🗂️ Project Structure
 
 ```
-behavioral/
-└── proxy_pattern/
-    ├── Proxy.ts         # Proxy and real object implementation
+proxy-pattern/
+│── interfaces/
+│   └── Image.ts
+│
+│── classes/
+│   ├── RealImage.ts
+│   └── ProxyImage.ts
+│
+└── main.ts
+
 ```
 
 ---

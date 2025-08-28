@@ -35,8 +35,25 @@ Ensures consistency in reporting → all reports look uniform, just the metrics 
 
 ```
 behavioural/
-└── template_pattern/
-    ├── Template.ts      # Template method implementation for progress reports
+TemplateMethodPattern/
+
+│── abstract/
+
+│   └── ProgressReport.ts        # Abstract class (template method)
+
+│
+
+│── concrete/                    
+
+│   ├── PracticeReport.ts
+
+│   ├── ChallengeReport.ts
+
+│   └── RevisionReport.ts
+
+│
+
+│── main.ts                      # Client code (usage)
 ```
 
 ---
@@ -64,18 +81,19 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-📥 Fetching practice session data for Student STU101
-📊 Calculating accuracy, attempts, and hints used...
-📑 Formatting report in Mindspark standard template...
-📤 Sending report to Student ID: STU101
-⚡ Fetching challenge performance for Student STU102
-🏆 Calculating speed, rank, and difficulty level...
-📑 Formatting report in Mindspark standard template...
-📤 Sending report to Student ID: STU102
-🔄 Fetching revision history for Student STU103
-📈 Calculating improvement over time...
-📑 Formatting report in Mindspark standard template...
-📤 Sending report to Student ID: STU103
+Fetching practice session data for Student STU101
+Calculating accuracy, attempts, and hints used...
+Formatting report in Mindspark standard template...
+Sending report to Student ID: STU101
+Fetching challenge performance for Student STU102
+Calculating speed, rank, and difficulty level...
+Formatting report in Mindspark standard template...
+Sending report to Student ID: STU102
+Fetching revision history for Student STU103
+Calculating improvement over time...
+Formatting report in Mindspark standard template...
+Sending report to Student ID: STU103
+Error generating report for : Invalid studentId for PracticeReport
 ```
 
 ---

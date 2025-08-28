@@ -26,8 +26,17 @@ Coordinating multiple components (quiz engine, leaderboard, notifications) witho
 
 ```
 behavioural/
-└── mediator_pattern/
-    ├── Mediator.ts      # Mediator pattern implementation for classroom chat
+MediatorPattern/
+│── interfaces/
+│   └── Mediator.ts
+│── participants/
+│   ├── Participant.ts
+│   ├── Teacher.ts
+│   └── Student.ts
+│── mediators/
+│   └── ChatMediator.ts
+│── main.ts
+
 ```
 
 ---
@@ -55,15 +64,18 @@ behavioural/
 ## ✅ Sample Output
 
 ```
+
+--- Classroom Chat ---
 Ms. Anitha sends: Hello class, today’s topic is Fractions.
-👨‍🎓 Student Arjun received: Hello class, today’s topic is Fractions.
-👨‍🎓 Student Dharma received: Hello class, today’s topic is Fractions.
+Student Arjun received: Hello class, today’s topic is Fractions.
+Student Dharma received: Hello class, today’s topic is Fractions.
 Arjun sends: Got it, ma’am!
-👩‍🏫 Teacher Ms. Anitha received: Got it, ma’am!
-👨‍🎓 Student Dharma received: Got it, ma’am!
+Teacher Ms. Anitha received: Got it, ma’am!
+Student Dharma received: Got it, ma’am!
 Dharma sends: Yes ma’am, I’m ready!
-👩‍🏫 Teacher Ms. Anitha received: Yes ma’am, I’m ready!
-👨‍🎓 Student Arjun received: Yes ma’am, I’m ready!
+Teacher Ms. Anitha received: Yes ma’am, I’m ready!
+Student Arjun received: Yes ma’am, I’m ready!
+Arjun tried to send an empty message.
 ```
 
 ---

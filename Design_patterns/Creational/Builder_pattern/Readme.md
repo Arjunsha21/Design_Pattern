@@ -1,38 +1,74 @@
-# Builder Design Pattern
+## Builder Design Pattern (TypeScript)
 
-## Definition
+### What it is
+The Builder pattern separates the construction of a complex object from its representation. It builds objects step-by-step via a fluent API and returns a fully validated product from `build()`.
 
-The **Builder Pattern** is a creational design pattern that separates the construction of a complex object from its representation, allowing the same construction process to create different representations. It is especially useful when an object requires numerous steps or configurations to be created correctly.
+### When to use it
+- **Many options/steps**: Object has many optional/required parameters.
+- **Readable construction**: Prefer method chaining over telescoping constructors.
+- **Validation**: Need to validate configurations before producing the final object.
 
-## Use Cases
+### Project structure
+```
+Creational/Builder_pattern/
+ ├── Car.ts
+ ├── ICarBuilder.ts
+ ├── CarBuilder.ts
+ ├── index.ts
+ └── tsconfig.json
+```
 
-- When you need to construct an object with many optional or mandatory parts or configurations.
-- When the construction process must allow different representations for the object being built.
-- When you want to avoid a telescoping constructor (constructors with many parameters).
-- When you want to make the object creation process more readable and maintainable.
+### Key components
+- **Product (`Car`)**: Holds the final configuration and exposes `specs()`.
+- **Builder interface (`ICarBuilder`)**: Declares building steps and `build()`.
+- **Concrete builder (`CarBuilder`)**: Implements steps with validations and returns a `Car`.
+- **Client (`index.ts`)**: Uses the builder to construct different car variants.
 
-## Comparison: With Builder vs. Without Builder
+### Usage example
+```ts
+// index.ts
+import { CarBuilder } from "./CarBuilder";
 
-### With Builder Pattern
+const car = new CarBuilder()
+  .setEngine("Petrol")
+  .setTransmission("Manual")
+  .setSunroof(true)
+  .setGPS(false)
+  .setAirbags(2)
+  .build();
 
-- **Object Creation:** The object is constructed step-by-step using a builder, often with method chaining.
-- **Readability:** The construction process is clear and easy to read, showing exactly which parts are set.
-- **Immutability:** The builder can enforce immutability by only exposing the final object after building.
-- **Flexibility:** Easy to create different configurations of the object without complex constructors.
+car.specs();
+```
 
-### Without Builder Pattern
+### Error handling in builder
+- Throws if required fields are missing (e.g., engine, transmission).
+- Validates allowed values (e.g., transmission must be "Manual" or "Automatic").
+- Prevents invalid states (e.g., negative airbags).
 
-- **Object Creation:** The object is created using a constructor with many parameters or by setting properties after instantiation.
-- **Complexity:** Constructors with many parameters can be confusing and error-prone.
-- **Maintainability:** Adding or removing parameters requires changes to the constructor and all its usages.
-- **Less Flexible:** Difficult to manage optional parameters and default values.
+### Run the example
+- With ts-node:
+```bash
+npx ts-node Creational/Builder_pattern/index.ts
+```
 
-## Example Scenario
+- Compile and run:
+```bash
+npx tsc -p Creational/Builder_pattern
+node Creational/Builder_pattern/dist/index.js
+```
 
-Suppose you are building a `Car` object that can have various configurations (engine type, transmission, sunroof, GPS, airbags, etc.).
-- **With Builder:** You use a `CarBuilder` class to set each property step-by-step and then call `build()` to get the final `Car` object. This approach is clear, flexible, and easy to extend.
-- **Without Builder:** You either use a constructor with many parameters (which can be hard to read and maintain) or set properties one by one after creating the object, which can lead to partially constructed or inconsistent objects.
+### Expected output
+```
+WITH BUILDER:
+Car with Petrol engine, Manual transmission, sunroof, no GPS, 2 airbags.
+Car with Electric engine, Automatic transmission, no sunroof, GPS, 6 airbags.
+❌ Error while building car: Engine type must be provided
+```
 
-## Summary
+### Benefits
+- **Readable and maintainable** object construction
+- **Validation and safety** before object creation
+- **Flexibility** to create multiple variants with the same steps
 
-The Builder Pattern is ideal for constructing complex objects with many configuration options. It improves code readability, maintainability, and flexibility, and helps avoid errors associated with complex
+### Extending
+Add new configuration methods to `ICarBuilder` and implement them in `CarBuilder`. Keep `build()` as the single point that guarantees a valid `Car`.

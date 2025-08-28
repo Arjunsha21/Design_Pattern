@@ -19,9 +19,13 @@ Easily extendable – Add new checks like GrammarCheck or ReferenceCheck without
 ## 🗂️ Project Structure
 
 ```
-behavioural/
-└── interpreter_pattern/
-    ├── Interpreter.ts      # Interpreter pattern implementation for expressions
+src/
+ ├── handlers/
+ │    ├── HomeworkHandler.ts
+ │    ├── SpellCheckHandler.ts
+ │    ├── PlagiarismCheckHandler.ts
+ │    └── ContentValidationHandler.ts
+ └── main.ts
 ```
 
 ---
@@ -51,11 +55,24 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-Expression: (5 + 3) * 2
-Result: 16
+🔎 Validating submissions:
 
-Expression: (10 - 4) / 2
-Result: 3
+📄 Submission 1: "Photosynthesis explanation is correct"
+✅ SpellCheck passed
+✅ Plagiarism check passed
+❌ Content validation failed
+
+📄 Submission 2: "copied content about photosynthesis"
+✅ SpellCheck passed
+❌ Plagiarism detected
+
+📄 Submission 3: "mispell in text"
+❌ SpellCheck failed
+
+📄 Submission 4: "random text without keyword"
+✅ SpellCheck passed
+✅ Plagiarism check passed
+❌ Content validation failed
 ```
 
 ---

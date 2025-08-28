@@ -26,8 +26,17 @@ This is a perfect use case for the Memento Pattern.
 
 ```
 behavioural/
-└── memento_pattern/
-    ├── Memento.ts      # Memento pattern implementation for answer history
+memento/
+
+│── IMemento.ts
+
+│── AnswerMemento.ts
+
+│── StudentAnswer.ts
+
+│── AnswerHistory.ts
+
+│── main.ts   (usage)
 ```
 
 ---
@@ -59,6 +68,7 @@ Student wrote: Answer 2
 Student wrote: Answer 3
 Restored to: Answer 2
 Restored to: Answer 1
+No history available to undo.
 ```
 
 ---

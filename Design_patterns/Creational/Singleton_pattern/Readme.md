@@ -1,38 +1,47 @@
-# Singleton Design Pattern
+## Singleton Design Pattern (TypeScript)
 
-## Definition
+### What it is
+Ensures a class has only one instance and provides a global access point to it. Great for shared services like logging, configuration, or caches.
 
-The **Singleton Pattern** is a creational design pattern that ensures a class has only one instance and provides a global point of access to that instance. This pattern restricts the instantiation of a class to a single object and is useful when exactly one object is needed to coordinate actions across a system.
+### Project structure
+```
+Creational/Singleton_pattern/
+ ├── ILogger.ts
+ ├── LoggerSingleton.ts
+ ├── main.ts
+ ├── WithoutSingleton.ts
+ └── tsconfig.json
+```
 
-## Use Cases
+### Key components
+- **ILogger**: Interface with `log(message)` and `getHistory()`.
+- **LoggerSingleton**: Private constructor + static `getInstance()`; stores shared `logHistory` and validates input in `log()`.
+- **main.ts**: Uses two references that share the same singleton instance and history.
 
-- When you need to control access to shared resources (e.g., logging, configuration, thread pools).
-- When you want to ensure that only one instance of a class exists throughout the application.
-- When you need a global point of access to an object.
-- When managing shared state or coordinating actions across different parts of a system.
+### Error handling
+- Empty/whitespace messages are rejected in `log()` with a clear error, handled gracefully without crashing.
 
-## Comparison: With Singleton vs. Without Singleton
+### Run
+- With ts-node:
+```bash
+npx ts-node --project Creational/Singleton_pattern/tsconfig.json Creational/Singleton_pattern/main.ts
+```
 
-### With Singleton Pattern
+- Compile and run:
+```bash
+npx tsc -p Creational/Singleton_pattern
+node Creational/Singleton_pattern/dist/main.js
+```
 
-- **Single Instance:** Guarantees that only one instance of the class exists.
-- **Global Access:** Provides a global point of access to the instance.
-- **Controlled Access:** Useful for managing shared resources or centralized services.
-- **Lazy Initialization:** The instance can be created only when it is needed.
+### Expected output
+```
+=== WITH SINGLETON ===
+LoggerSingleton: First log message.
+LoggerSingleton: Second log message.
+Error while logging: Log message cannot be empty.
+Logger history (from logger1): [ 'First log message.', 'Second log message.' ]
+Logger history (from logger2): [ 'First log message.', 'Second log message.' ]
+```
 
-### Without Singleton Pattern
-
-- **Multiple Instances:** Multiple instances of the class can be created, which may lead to inconsistent state or resource conflicts.
-- **No Global Access:** No built-in mechanism for global access to a single instance.
-- **Difficult Coordination:** Harder to coordinate actions or share state across the system.
-- **Potential Resource Waste:** May lead to unnecessary resource usage if multiple instances are created.
-
-## Example Scenario
-
-Suppose you are implementing a logging service for your application.
-- **With Singleton:** You use the Singleton pattern to ensure that all parts of your application use the same logger instance, so all log messages are collected in a single place and the log history is consistent.
-- **Without Singleton:** Each part of your application creates its own logger instance, leading to fragmented log histories and potential confusion.
-
-## Summary
-
-The Singleton Pattern is ideal when you need to ensure a class has only one instance and provide a global point of access to it. It is commonly used for logging, configuration, caching, and other scenarios where a single shared resource or
+### Comparison
+- See `WithoutSingleton.ts` for a multi-instance logger example. Each instance keeps its own history, unlike the singleton’s shared history.

@@ -1,38 +1,82 @@
-# Abstract Factory Design Pattern
+## Abstract Factory Design Pattern (TypeScript)
 
-## Definition
+### What it is
+The Abstract Factory is a creational pattern that provides an interface for creating families of related objects without specifying their concrete classes. It keeps client code decoupled from the actual implementations and preserves consistency among related products.
 
-The **Abstract Factory Pattern** is a creational design pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes. It allows you to produce different types of objects that belong together (e.g., UI components for a specific theme) while keeping the creation logic abstracted from the client code.
+### When to use it
+- **Multiple variants**: You have several families of related products (e.g., light vs dark theme components).
+- **Consistency required**: Products from the same family must be used together.
+- **Decoupling**: Client code should rely only on interfaces, not concrete classes.
+- **Easy extension**: You want to add new variants by implementing a new factory without touching client code.
 
-## Use Cases
+### Project structure
+```
+Creational/Abstract_pattern/
+ ├── src/
+ │   ├── products/
+ │   │   ├── Button.ts
+ │   │   ├── Checkbox.ts
+ │   │   ├── LightButton.ts
+ │   │   ├── LightCheckbox.ts
+ │   │   ├── DarkButton.ts
+ │   │   └── DarkCheckbox.ts
+ │   ├── factories/
+ │   │   ├── GUIFactory.ts
+ │   │   ├── LightThemeFactory.ts
+ │   │   └── DarkThemeFactory.ts
+ │   ├── errors/
+ │   │   └── FactoryError.ts
+ │   └── main.ts
+ └── tsconfig.json
+```
 
-- When your system needs to be independent of how its objects are created, composed, and represented.
-- When you want to ensure that products from the same family are used together (e.g., light theme button and light theme checkbox).
-- When you want to provide a library of products, revealing only their interfaces, not their implementations.
-- When you need to support multiple product variants (such as different UI themes or platforms).
+### Key components
+- **Product interfaces**: `Button`, `Checkbox` expose `render(): string`.
+- **Concrete products**: `LightButton`, `LightCheckbox`, `DarkButton`, `DarkCheckbox` implement the interfaces.
+- **Abstract factory**: `GUIFactory` declares `createButton()` and `createCheckbox()`.
+- **Concrete factories**: `LightThemeFactory`, `DarkThemeFactory` create consistent product families.
+- **Error handling**: `FactoryError` signals invalid factory usage.
 
-## Comparison: With Abstract Factory vs. Without Abstract Factory
+### How it works (flow)
+1. Client receives a `GUIFactory` (light or dark).
+2. Client asks the factory to create a `Button` and a `Checkbox`.
+3. Client renders the components without knowing their concrete classes.
+4. If no factory is provided, a `FactoryError` is thrown and handled.
 
-### With Abstract Factory Pattern
+### Run the example
+- Build and run (recommended):
+```bash
+npx tsc -p Creational/Abstract_pattern
+node Creational/Abstract_pattern/dist/main.js
+```
 
-- **Object Creation:** Families of related objects are created through a common factory interface.
-- **Consistency:** Ensures that products from the same family are used together, maintaining a consistent look and feel.
-- **Decoupling:** Client code depends only on abstract interfaces, not concrete classes.
-- **Extensibility:** Adding new product families (e.g., a new theme) is straightforward by implementing a new factory.
+- Or run directly with ts-node:
+```bash
+npx ts-node --project Creational/Abstract_pattern/tsconfig.json Creational/Abstract_pattern/src/main.ts
+```
 
-### Without Abstract Factory Pattern
+### Expected output
+```
+WITH ABSTRACT FACTORY:
+Rendering Light Button
+Rendering Light Checkbox
+Rendering Dark Button
+Rendering Dark Checkbox
+FactoryError: ❌ No valid factory was provided.
+```
 
-- **Object Creation:** Client code directly instantiates concrete classes.
-- **Inconsistency:** Risk of mixing products from different families, leading to inconsistent UI or behavior.
-- **Tight Coupling:** Client code is tightly coupled to specific implementations, making changes harder.
-- **Less Flexible:** Adding new product families requires changes in client code.
+### Benefits
+- **Consistency**: Ensures compatible products are used together.
+- **Decoupling**: Client depends on interfaces, not implementations.
+- **Extensibility**: Add new families by creating a new factory.
 
-## Example Scenario
+### Trade-offs
+- **More classes**: Increases the number of types/files.
+- **Upfront design**: Requires clear definition of product families and interfaces.
 
-Suppose you are building a UI library that supports both light and dark themes. Each theme has its own button and checkbox styles.
-- **With Abstract Factory:** You define a `GUIFactory` interface with methods to create buttons and checkboxes. Concrete factories (`LightThemeFactory`, `DarkThemeFactory`) implement this interface to produce theme-specific components. The client uses the factory interface, so it remains unaware of the concrete classes.
-- **Without Abstract Factory:** The client directly creates instances of `LightButton`, `DarkButton`, `LightCheckbox`, or `DarkCheckbox`, increasing the risk of mixing components from different themes and making the code harder to maintain.
+### Adding a new theme (example)
+1. Create products, e.g., `BlueButton`, `BlueCheckbox` implementing `Button` and `Checkbox`.
+2. Add `BlueThemeFactory implements GUIFactory` that returns the blue products.
+3. Use `buildUIWithFactory(new BlueThemeFactory())` in `main.ts`.
 
-## Summary
-
-The Abstract Factory Pattern is ideal for systems that need to create families of related objects and want to ensure consistency and flexibility. It promotes loose coupling and makes it easy to introduce new product families without modifying existing
+This repository contains an additional file `Abstract.ts` showing a pattern-focused variant; the runnable example lives under `src/` and is configured via the local `tsconfig.json`.

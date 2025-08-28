@@ -24,9 +24,13 @@ Mindspark Context – Ideal for short answer questions, keyword-based evaluation
 ## 🗂️ Project Structure
 
 ```
-behavioural/
-└── chainofresponsibility_pattern/
-    ├── ChainofResponsibility.ts      # Chain of Responsibility implementation for homework processing
+InterpreterPattern/
+│── Expression.ts
+│── KeywordExpression.ts
+│── AndExpression.ts
+│── OrExpression.ts
+│── main.ts
+
 ```
 
 ---
@@ -53,10 +57,9 @@ behavioural/
 ## ✅ Sample Output
 
 ```
-Checking for plagiarism...
-Checking homework format...
-Teacher reviewing homework...
-Homework approved!
+Answer 1: Q1: ✅, Q2: ❌
+Answer 2: Q1: ❌, Q2: ✅
+Answer 3: Q1: ❌, Q2: ❌
 ```
 
 ---

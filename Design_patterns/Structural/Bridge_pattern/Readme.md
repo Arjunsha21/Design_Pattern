@@ -1,55 +1,60 @@
-# Bridge Design Pattern in TypeScript
+## Bridge Design Pattern (TypeScript)
 
-This project demonstrates the Bridge Design Pattern using a real-world example: decoupling payment methods (UPI, Card) from payment platforms (Web, Mobile) to avoid class explosion and increase flexibility.
+### What it is
+The Bridge pattern decouples an abstraction from its implementation, allowing both to vary independently. It prevents the "cartesian product" problem where you'd need classes like `WebUPIPayment`, `WebCardPayment`, `MobileUPIPayment`, etc.
 
----
-
-## What is the Bridge Design Pattern?
-
-The Bridge Pattern is a structural design pattern that separates an abstraction from its implementation so that the two can vary independently. It is useful when you want to avoid a combinatorial explosion of classes due to multiple dimensions of variation.
-
-**This is useful when:**
-- You have multiple orthogonal (independent) dimensions of variation (e.g., payment method and platform).
-- You want to avoid creating a separate class for every combination.
-- You want to change or extend either abstraction or implementation independently.
-
----
-
-## 🗂️ Project Structure
-
+### Project structure
 ```
-behavioral/
-└── bridge_pattern/
-    ├── Bridge.ts      # Bridge pattern implementation for payments
+Structural/Bridge_pattern/
+ ├── bridge-pattern/
+ │   ├── interfaces/
+ │   │   └── PaymentMethod.ts
+ │   ├── methods/
+ │   │   ├── UPIPayment.ts
+ │   │   └── CardPayment.ts
+ │   ├── platforms/
+ │   │   ├── PaymentPlatform.ts
+ │   │   ├── WebPlatform.ts
+ │   │   └── MobilePlatform.ts
+ │   └── main.ts
+ ├── WithoutBridge.ts        (comparison example)
+ └── tsconfig.json
 ```
 
----
+### Key components
 
-## 📦 Description of Classes
+#### **Implementor (PaymentMethod)**
+- **Interface**: `PaymentMethod` with `pay(amount: number): void`
+- **Concrete Implementors**: `UPIPayment`, `CardPayment`
+- Each validates input and handles payment logic independently
 
-| Class/Interface      | Role                                                      |
-|----------------------|-----------------------------------------------------------|
-| `PaymentMethod`      | Interface for payment methods (Implementor)               |
-| `UPIPayment`         | Concrete payment method (UPI)                             |
-| `CardPayment`        | Concrete payment method (Credit Card)                     |
-| `PaymentPlatform`    | Abstraction for payment platforms                         |
-| `WebPlatform`        | Concrete platform for web payments                        |
-| `MobilePlatform`     | Concrete platform for mobile payments                     |
+#### **Abstraction (PaymentPlatform)**
+- **Base**: `PaymentPlatform` takes a `PaymentMethod` in constructor
+- **Refined**: `WebPlatform`, `MobilePlatform` extend base with platform-specific behavior
+- Wraps payment calls with error handling
 
----
+### How the Bridge works
+Instead of inheritance hierarchies like:
+```
+❌ Bad: WebUPIPayment, WebCardPayment, MobileUPIPayment, MobileCardPayment
+```
 
-## 💡 How It Works
+We use composition:
+```
+✅ Good: WebPlatform + UPIPayment, WebPlatform + CardPayment, etc.
+```
 
-- `PaymentMethod` defines the interface for payment methods.
-- `UPIPayment` and `CardPayment` implement different payment methods.
-- `PaymentPlatform` is the abstraction that uses a `PaymentMethod`.
-- `WebPlatform` and `MobilePlatform` extend `PaymentPlatform` to represent different platforms.
-- The client can mix and match any payment method with any platform without creating new classes for each combination.
+### Error handling
+- Payment methods validate amounts (must be > 0)
+- `PaymentPlatform.makePayment()` catches errors and displays graceful messages
+- System continues running even with invalid inputs
 
----
+### Run the example
+```bash
+npx ts-node --project Structural/Bridge_pattern/tsconfig.json Structural/Bridge_pattern/bridge-pattern/main.ts
+```
 
-## ✅ Sample Output
-
+### Expected output
 ```
 🌐 Web Payment Started
 ✅ Paid ₹1000 via UPI
@@ -59,27 +64,20 @@ behavioral/
 ✅ Paid ₹1500 using Credit Card
 📱 Mobile Payment Started
 ✅ Paid ₹800 via UPI
+🌐 Web Payment Started
+⚠️ Payment failed: ❌ Invalid payment amount. Must be greater than 0.
 ```
 
----
+### Benefits
+- **Eliminates inheritance explosion**: No need for every platform × method combination
+- **Runtime flexibility**: Can switch payment methods or platforms at runtime
+- **Single responsibility**: Each class has one clear purpose
+- **Open/Closed**: Easy to add new platforms or payment methods without changing existing code
 
-## ▶️ How to Compile and Run
+### When to use
+- When you have multiple dimensions of variation (platform × payment method)
+- When you want to avoid deep inheritance hierarchies
+- When you need runtime flexibility in choosing implementations
 
-```sh
-tsc Bridge.ts
-node Bridge.js
-```
-
----
-
-## Benefits Demonstrated
-
-- Decouples abstraction (platform) from implementation (payment method)
-- Avoids class explosion for every combination
-- Makes it easy to add new platforms or payment methods independently
-
----
-
-## Summary
-
-The Bridge Pattern is ideal for scenarios where you have multiple independent dimensions of variation. It keeps your codebase flexible, maintainable, and scalable
+### Comparison
+See `WithoutBridge.ts` for a traditional approach that would require separate classes for each combination, leading to maintenance issues and code duplication.
